@@ -23,8 +23,8 @@
     @include('layout.header')
 
     <!-- Section Header -->
-    <section class="text-white" style="background: url('{{ asset($hilder->gambar ?? 'default.jpg') }}') center center / cover no-repeat; min-height: 70vh;">
-        <div class="position-relative" style="min-height: 70vh;">
+    <section class="text-white shadow" style="background: url('{{ asset($hilder->gambar ?? 'default.jpg') }}') center center / cover no-repeat; min-height: 70vh;">
+        <div class="position-relative shadow" style="min-height: 70vh;">
             <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 1;"></div>
             <div class="container py-5 position-relative" style="z-index: 2;">
                 <div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
