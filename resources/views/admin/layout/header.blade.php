@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ $title ?? 'Untitle' }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+</head>
+<body class="bg-light">
 <nav class="navbar navbar-expand-lg bg-success shadow sticky-top">
   <div class="container">
     <a class="navbar-brand text-white fw-bold" href="#">Navbar</a>
@@ -18,15 +34,14 @@
         <li class="nav-item">
           <a class="nav-link text-white fw-bold" href="{{ url('/admin/hilder') }}">Hilder</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Layanan Surat
-          </a>
-          <ul class="dropdown-menu bg-success shadow">
-            <li><a class="dropdown-item text-white fw-bold" href="{{ route('admin.adminsktm.index') }}">Surat Keterangan Tidak Mampu</a></li>
-          </ul>
+          <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{{ route('admin.layanan.index') }}">Layanan</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="{{ route('admin.permohonan.index') }}">Permohonan Layanan</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
