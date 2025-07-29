@@ -10,7 +10,7 @@
           <a class="nav-link active text-white fw-bold" aria-current="page" href="#datadesa">Profil Desa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="{{ route('informasi.index') }}">Informasi</a>
+          <a class="nav-link text-white fw-bold" href="/informasi">Informasi</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -22,13 +22,8 @@
             <li><a class="dropdown-item text-white fw-bold" href="#profildesa">Profil Desa</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Layanan Surat
-          </a>
-          <ul class="dropdown-menu bg-success shadow">
-            <li><a class="dropdown-item text-white fw-bold" href="{{ route('suratsktm.index') }}">Surat Keterangan Tidak Mampu</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="/layanan">Layanan</a>
         </li>
       </ul>
 

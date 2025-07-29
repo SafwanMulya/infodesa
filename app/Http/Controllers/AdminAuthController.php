@@ -19,8 +19,7 @@ class AdminAuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        if (auth('admin')->attempt($request->only('email', 'password'))) {
+        if (auth()->attempt($request->only('email', 'password'))) {
             return redirect()->route('admin.dashboard')->with('success', 'Login berhasil!');
         }
 
@@ -33,8 +32,5 @@ class AdminAuthController extends Controller
         return redirect()->route('admin.login')->with('success', 'Anda telah logout.');
     }
 
-    public function dashboard()
-    {
-        return view('admin.index'); // Halaman dashboard admin
-    }
+  
 }
