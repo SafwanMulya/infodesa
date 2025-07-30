@@ -57,6 +57,7 @@ Route::get('/informasi/{id?}' ,[HomeController::class, 'informasi']);
 Route::get('/layanan/{id?}' ,[HomeController::class, 'layanan']);
 
 Route::match(['get','post'],'/permohonan-layanan/{id?}' ,[HomeController::class, 'permohonan']);
+Route::match(['get','post'],'/verify_surat/{kode}' ,[HomeController::class, 'verify_surat'])->name('verify_surat');
 
 
 Route::resource('admin/datadesa', DatadesaController::class);

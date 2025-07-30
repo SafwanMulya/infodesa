@@ -1,4 +1,3 @@
-// FileName: MultipleFiles/2025_07_28_024600_create_admins_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -17,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->rememberToken(); // Opsional, untuk "remember me"
+            $table->rememberToken();
             $table->timestamps();
         });
     }
