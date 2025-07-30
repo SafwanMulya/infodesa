@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('surat_docx')->nullable();
             $table->string('surat_tte')->nullable();
             $table->string('surat_pdf')->nullable();
+            $table->string('nomor_surat')->nullable();
             $table->datetime('tte_pada')->nullable();
             $table->datetime('tanggal_cetak')->nullable();
             $table->string('alamat_pemohon')->nullable();
