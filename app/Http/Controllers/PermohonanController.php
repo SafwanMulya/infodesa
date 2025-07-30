@@ -114,7 +114,7 @@ class PermohonanController extends Controller
             'nohp_pemohon' => $permohonan->nohp,
             'nama_pemohon' => $permohonan->nama,
             'nama_pejabat' => $request->nama_pejabat ?? null,
-            'tanggal_cetak' => $request->tanggal_cetak ?? null,
+            'tgl_cetak' => $request->tanggal_cetak ?? null,
             'nomor_surat' => $request->nomor_surat ?? null,
         ]);
         $permohonan->update([
@@ -124,7 +124,7 @@ class PermohonanController extends Controller
             'nomor_surat' => $request->nomor_surat,
         ]);
         $templateProcessor->setValues($data);
-        $templateProcessor->setImageValue('tte', array('path' => $this->generate_qr($permohonan->kode_tiket), 'width' => 100, 'height' => 100, 'ratio' => false));
+        $templateProcessor->setImageValue('tte', array('path' => $this->generate_qr($permohonan->kode_tiket), 'width' => 80, 'height' => 80, 'ratio' => false));
         $pathToSave = public_path('hasil_cetak/' . $permohonan->kode_tiket . '.docx');
         File::put(Storage::path('docxtopdf/' . $permohonan->kode_tiket . '.txt'),$pathToSave ); $templateProcessor->saveAs($pathToSave);
         return back()->with('success', 'Surat berhasil dibuat.');
