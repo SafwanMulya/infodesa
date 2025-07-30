@@ -1,4 +1,3 @@
-// FileName: MultipleFiles/2025_07_28_024600_create_admins_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
