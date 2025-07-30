@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('layanans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('kode_layanan');
-            $table->string('singkatan');
-            $table->string('slug');
-            $table->string('template_surat');
-            $table->string('status');
-            $table->text('keterangan');
-            $table->tinyInteger('dilihat');
+            $table->string('nama')->nullable();
+            $table->string('kode_layanan')->nullable();
+            $table->string('singkatan')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('template_surat')->nullable();
+            $table->string('status')->nullable();
+            $table->text('keterangan')->nullable();
+            $table->tinyInteger('dilihat')->nullable();
             $table->timestamps();
         });
     }
