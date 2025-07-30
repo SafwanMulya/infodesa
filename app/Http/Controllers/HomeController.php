@@ -36,7 +36,13 @@ class HomeController extends Controller
         ];
         return view('informasi.index',$data);
     }
-
+    function verify_surat($kode){
+        $permohonan = Permohonan::where('kode_tiket', $kode)->first();
+        if(!$permohonan){
+            return redirect()->back()->with('error', 'Permohonan tidak ditemukan.');
+        }
+        return view('permohonan.verify', compact('permohonan'));
+    }
         public function layanan($id=null){
         if($id){
             $layanan = Layanan::findOrFail($id);
@@ -57,15 +63,27 @@ class HomeController extends Controller
                     $data_permohonan = [];
                     if($kolom = config('form-layanan.'.$layanan->kode_layanan)){
                         foreach ($kolom as $key => $value) {
+                            if($value['type']=='file'){
+                                if($request->hasFile($value['kolom'])){
+                                    $file = $request->file($value['kolom']);
+                                    $filename = time() .'-'.$value['kolom']. '.' . $file->getClientOriginalExtension();
+                                    $file->move(public_path('uploads'), $filename);
+                                    $data_permohonan[$value['kolom']] = '/uploads/'.$filename;
+                                }
+                                continue;
+                            }else{
                             $key = $value['kolom'];
                             $data_permohonan[$key] = $request->$key;
+                            }
+                           
                         }
                     }
                     $layanan->permohonan()->create([
-                        'nik'=>$request->nik,
+                        'nik_pemohon'=>$request->nik,
                         'nama_pemohon'=>$request->nama_pemohon,
-                        'alamat'=>$request->alamat,
+                        'alamat_pemohon'=>$request->alamat,
                         'nohp'=>$request->nohp,
+                        'kode_tiket'=>str()->random(6),
                         'data_permohonan'=>$data_permohonan,
                     ]);
                     return back()->with('success','Permohonan berhasil diajukan');
