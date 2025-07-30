@@ -121,7 +121,6 @@ class PermohonanController extends Controller
             'surat_docx' => '/hasil_cetak/' . $permohonan->kode_tiket . '.docx',
             'surat_pdf' => '/hasil_cetak/' . $permohonan->kode_tiket . '.pdf',
             'tanggal_cetak' => now(),
-            'nama_pejabat' => $request->nama_pejabat,
             'nomor_surat' => $request->nomor_surat,
         ]);
         $templateProcessor->setValues($data);
