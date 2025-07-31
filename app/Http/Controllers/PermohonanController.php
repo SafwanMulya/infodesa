@@ -76,7 +76,8 @@ class PermohonanController extends Controller
         "nik" => $request->nik_pejabat,
         "passphrase" => $request->passphrase,
         "signatureProperties" => [[
-            "tampilan" => "INVISIBLE"
+            "tampilan" => "INVISIBLE",
+            "reason" => "Tanda tangan elektronik untuk surat milik " .$permohonan->nama_pemohon." untuk ". $permohonan->layanan->nama,
         ]],
         "file" => [$pdfBase64]
     ];
