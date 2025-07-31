@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Models\Permohonan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -16,11 +18,37 @@ class PermohonanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $permohonans  = Permohonan::with('layanan')->paginate(10);
+       $permohonans = Permohonan::query()
+        ->when($request->from_date, function ($query) use ($request) {
+            $query->whereDate('created_at', '>=', $request->from_date);
+        })
+        ->when($request->to_date, function ($query) use ($request) {
+            $query->whereDate('created_at', '<=', $request->to_date);
+        })
+        ->when($request->cari, function ($query) use ($request) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama_pemohon', 'like', '%' . $request->cari . '%')
+                  ->orWhere('nik_pemohon', 'like', '%' . $request->cari . '%')
+                  ->orWhere('alamat_pemohon', 'like', '%' . $request->cari . '%')
+                  ->orWhere('kode_tiket', 'like', '%' . $request->cari . '%');
+            });
+        })
+        ->latest();
+        if($request->cetak){
+            $permohonans = $permohonans->get();
+            $pdf = Pdf::loadView('admin.permohonan.report', ['data' => $permohonans]);
+            $pdf->setPaper('A4', 'potrait');
+            return $pdf->stream('rekap_permohonan.pdf');
+        }else {
+            $permohonans = $permohonans->paginate(10);
+        }
         $permohonan = null;
         return view('admin.permohonan.index', compact('permohonans', 'permohonan'));
+    }
+    function cetak_rekap($data){
+        
     }
     function generate_qr($kode)
     {
@@ -176,6 +204,7 @@ class PermohonanController extends Controller
      */
     public function destroy(Permohonan $permohonan)
     {
-        //
+        $permohonan->delete();
+        return redirect()->route('admin.permohonan.index')->with('success', 'Permohonan berhasil dihapus.');
     }
 }
