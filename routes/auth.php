@@ -11,6 +11,7 @@ use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\ProfildesaController;
 Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', [DashboardAdmin::class, 'index'])->name('dashboard');

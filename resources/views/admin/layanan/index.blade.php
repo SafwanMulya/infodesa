@@ -1,5 +1,5 @@
 
-    @extends('admin.layout.app',['title'=>'Hilder'])
+    @extends('admin.layout.app',['title'=>'Data Layanan'])
     @section('content')
     <div class="container mt-4">
         <h2 class="fw-bold mb-4"><i class="bi bi-table"></i> Data Layanan</h2>
@@ -76,7 +76,7 @@
                                 <tbody>
                                     @foreach($layanans as $i => $item)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ ($layanans->currentPage() - 1) * $layanans->perPage() + $loop->iteration }}}</td>
                                             <td>
                                                 <strong>{{ $item->nama }}</strong><br>
 

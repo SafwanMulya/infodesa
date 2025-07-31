@@ -29,7 +29,7 @@
 
       <!-- Login / Logout di Sebelah Kanan -->
       <ul class="navbar-nav ms-auto">
-        @if(session()->has('admin_id'))
+        @if(Auth::check())
           <!-- Jika Admin Sudah Login -->
           <li class="nav-item me-2">
             <a href="{{ url('/admin/dashboard') }}" class="btn btn-light btn-sm fw-bold">Dashboard</a>
