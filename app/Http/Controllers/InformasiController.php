@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\informasi;
+use App\Models\Informasi;
 use Illuminate\Http\Request;
 
 class InformasiController extends Controller
@@ -85,7 +85,7 @@ class InformasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(informasi $informasi)
+    public function edit(Informasi $informasi)
     {
         return view('admin.informasi.edit', compact('informasi')); // Arahkan ke view dengan data informasi
     }
@@ -93,7 +93,7 @@ class InformasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, informasi $informasi)
+    public function update(Request $request, Informasi $informasi)
     {
         // Validasi input
         $request->validate([
@@ -111,7 +111,7 @@ class InformasiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(informasi $informasi)
+    public function destroy(Informasi $informasi)
     {
         // Hapus data informasi
         $informasi->delete();

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\agama;
+use App\Models\Agama;
 use Illuminate\Http\Request;
 
 class AgamaController extends Controller
@@ -62,7 +62,7 @@ public function index()
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(agama $agama)
+    public function edit(Agama $agama)
     {
         $isNew = false; // Menandakan bahwa ini adalah form untuk mengedit data
         return view('admin.agama.edit', compact('agama', 'isNew')); // Arahkan ke view dengan data agama
@@ -71,7 +71,7 @@ public function index()
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, agama $agama)
+    public function update(Request $request, Agama $agama)
     {
         // Validasi input
         $request->validate([
@@ -92,7 +92,7 @@ public function index()
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(agama $agama)
+    public function destroy(Agama $agama)
     {
         // Hapus data agama
         $agama->delete();

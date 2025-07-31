@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Models\Permohonan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -16,11 +18,37 @@ class PermohonanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $permohonans  = Permohonan::with('layanan')->paginate(10);
+       $permohonans = Permohonan::query()
+        ->when($request->from_date, function ($query) use ($request) {
+            $query->whereDate('created_at', '>=', $request->from_date);
+        })
+        ->when($request->to_date, function ($query) use ($request) {
+            $query->whereDate('created_at', '<=', $request->to_date);
+        })
+        ->when($request->cari, function ($query) use ($request) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama_pemohon', 'like', '%' . $request->cari . '%')
+                  ->orWhere('nik_pemohon', 'like', '%' . $request->cari . '%')
+                  ->orWhere('alamat_pemohon', 'like', '%' . $request->cari . '%')
+                  ->orWhere('kode_tiket', 'like', '%' . $request->cari . '%');
+            });
+        })
+        ->latest();
+        if($request->cetak){
+            $permohonans = $permohonans->get();
+            $pdf = Pdf::loadView('admin.permohonan.report', ['data' => $permohonans]);
+            $pdf->setPaper('A4', 'potrait');
+            return $pdf->stream('rekap_permohonan.pdf');
+        }else {
+            $permohonans = $permohonans->paginate(10);
+        }
         $permohonan = null;
         return view('admin.permohonan.index', compact('permohonans', 'permohonan'));
+    }
+    function cetak_rekap($data){
+        
     }
     function generate_qr($kode)
     {
@@ -76,7 +104,8 @@ class PermohonanController extends Controller
         "nik" => $request->nik_pejabat,
         "passphrase" => $request->passphrase,
         "signatureProperties" => [[
-            "tampilan" => "INVISIBLE"
+            "tampilan" => "INVISIBLE",
+            "reason" => "Tanda tangan elektronik untuk surat milik " .$permohonan->nama_pemohon." untuk ". $permohonan->layanan->nama,
         ]],
         "file" => [$pdfBase64]
     ];
@@ -109,12 +138,12 @@ class PermohonanController extends Controller
             }
         }
         $data = array_merge($data, [
-            'nik_pemohon' => $permohonan->nik,
-            'alamat_pemohon' => $permohonan->alamat,
+            'nik_pemohon' => $permohonan->nik_pemohon,
+            'alamat_pemohon' => $permohonan->alamat_pemohon,
             'nohp_pemohon' => $permohonan->nohp,
-            'nama_pemohon' => $permohonan->nama,
+            'nama_pemohon' => $permohonan->nama_pemohon,
             'nama_pejabat' => $request->nama_pejabat ?? null,
-            'tgl_cetak' => $request->tanggal_cetak ?? null,
+            'tgl_cetak' => date('m F Y',strtotime($request->tanggal_cetak)) ?? null,
             'nomor_surat' => $request->nomor_surat ?? null,
         ]);
         $permohonan->update([
@@ -175,6 +204,7 @@ class PermohonanController extends Controller
      */
     public function destroy(Permohonan $permohonan)
     {
-        //
+        $permohonan->delete();
+        return redirect()->route('admin.permohonan.index')->with('success', 'Permohonan berhasil dihapus.');
     }
 }

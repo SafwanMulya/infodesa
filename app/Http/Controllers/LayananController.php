@@ -84,6 +84,7 @@ class LayananController extends Controller
      */
     public function destroy(Layanan $layanan)
     {
-        //
+        $layanan->delete();
+        return redirect()->route('admin.layanan.index')->with('success', 'Layanan berhasil dihapus');
     }
 }

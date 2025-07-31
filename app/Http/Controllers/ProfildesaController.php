@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\profildesa;
+use App\Models\Profildesa;
 use Illuminate\Http\Request;
 
 class ProfildesaController extends Controller
@@ -12,7 +12,7 @@ class ProfildesaController extends Controller
      */
    public function index()
 {
-    $singleProfil = profildesa::first();  // Ambil data pertama
+    $singleProfil = Profildesa::first();  // Ambil data pertama
     $isNew = is_null($singleProfil);      // True kalau belum ada data
 
     return view('admin.profil.index', compact('singleProfil', 'isNew'));
@@ -34,7 +34,7 @@ class ProfildesaController extends Controller
  public function store(Request $request)
 {
     // Cek apakah data sudah ada
-    if (profildesa::count() > 0) {
+    if (Profildesa::count() > 0) {
         return redirect()->route('admin.profil.index')->with('error', 'Hanya boleh ada satu profil desa.');
     }
 
@@ -61,7 +61,7 @@ class ProfildesaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(profildesa $profildesa)
+    public function show(Profildesa $profildesa)
     {
         return view('admin.profil.show', compact('profildesa')); // arahkan ke resources/views/admin/profil/show.blade.php
     }
@@ -69,7 +69,7 @@ class ProfildesaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(profildesa $profildesa)
+    public function edit(Profildesa $profildesa)
     {
         return view('admin.profil.edit', compact('profildesa')); // arahkan ke resources/views/admin/profil/edit.blade.php
     }
@@ -91,7 +91,7 @@ class ProfildesaController extends Controller
         'provinsi' => 'nullable|string|max:50',
     ]);
 
-    $profildesa = profildesa::findOrFail($id);
+    $profildesa = Profildesa::findOrFail($id);
     $profildesa->update($request->all());
 
     return redirect()->route('admin.profil.index')->with('success', 'Profil Desa berhasil diperbarui.');
@@ -99,7 +99,7 @@ class ProfildesaController extends Controller
 
 
 
-    public function destroy(profildesa $profildesa)
+    public function destroy(Profildesa $profildesa)
     {
         $profildesa->delete();
 
