@@ -38,9 +38,6 @@ class HomeController extends Controller
     }
     function verify_surat($kode){
         $permohonan = Permohonan::where('kode_tiket', $kode)->first();
-        if(!$permohonan){
-            return redirect()->back()->with('error', 'Permohonan tidak ditemukan.');
-        }
         return view('permohonan.verify', compact('permohonan'));
     }
         public function layanan($id=null){

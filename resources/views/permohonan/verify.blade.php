@@ -10,7 +10,10 @@
     <div class="container py-5">
       <div class="card shadow-lg">
         <div class="card-body text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Valid Icon" width="100" class="mb-3">
+       
+          
+          @if($permohonan && $permohonan->tte_pada)
+             <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Valid Icon" width="100" class="mb-3">
           <h2 class="text-success">Dokumen Valid ✔️</h2>
           <p class="text-muted">Dokumen ini telah diverifikasi oleh sistem pelayanan desa.</p>
 
@@ -30,6 +33,12 @@
           <div class="alert alert-success mt-4">
             Surat ini dikeluarkan secara sah oleh Pemerintah Desa Tameran.
           </div>
+          @else 
+               <img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" alt="InValid Icon" width="100" class="mb-3">
+            <div class="alert alert-warning mt-4">
+            Maaf, Surat yang anda cari tidak ditemukan atau belum di sahkan oleh Pemerintah Desa Tameran.
+          </div>
+          @endif
         </div>
       </div>
     </div>

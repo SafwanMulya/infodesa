@@ -109,12 +109,12 @@ class PermohonanController extends Controller
             }
         }
         $data = array_merge($data, [
-            'nik_pemohon' => $permohonan->nik,
-            'alamat_pemohon' => $permohonan->alamat,
+            'nik_pemohon' => $permohonan->nik_pemohon,
+            'alamat_pemohon' => $permohonan->alamat_pemohon,
             'nohp_pemohon' => $permohonan->nohp,
-            'nama_pemohon' => $permohonan->nama,
+            'nama_pemohon' => $permohonan->nama_pemohon,
             'nama_pejabat' => $request->nama_pejabat ?? null,
-            'tgl_cetak' => $request->tanggal_cetak ?? null,
+            'tgl_cetak' => date('m F Y',strtotime($request->tanggal_cetak)) ?? null,
             'nomor_surat' => $request->nomor_surat ?? null,
         ]);
         $permohonan->update([
