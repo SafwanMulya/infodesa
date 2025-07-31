@@ -162,7 +162,7 @@
                             <p class="card-text text-muted mb-3">
                                 <i class="bi bi-calendar-event me-1"></i> {{ \Carbon\Carbon::parse($info->tanggal)->format('d-m-Y') }}
                             </p>
-                            <a href="" class="mt-auto btn btn-outline-success btn-sm w-100">Selengkapnya &raquo;</a>
+                            <a href="/informasi" class="mt-auto btn btn-outline-success btn-sm w-100">Selengkapnya &raquo;</a>
                         </div>
                     </div>
                 </div>
