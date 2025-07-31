@@ -47,7 +47,7 @@ class HomeController extends Controller
         }
         
         $data = [
-            'layanan'=>Layanan::get()
+            'layanan'=>Layanan::withCount('permohonan')->get()
         ];
         return view('layanan.index',$data);
     }
