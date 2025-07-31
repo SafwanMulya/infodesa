@@ -15,7 +15,8 @@
                 <th style="text-align: center;">No</th>
                 <th style="text-align: center;">Kode Tiket</th>
                 <th style="text-align: center;">Tanggal Permohonan</th>
-                <th style="text-align: center;">NIK Pemohon</th>
+                <th style="text-align: center;">NIK</th>
+                <th style="text-align: center;">Nama</th>
                 <th style="text-align: center;">Alamat</th>
                 <th style="text-align: center;">Jenis Permohonan</th>
                 <th style="text-align: center;">Status</th>
@@ -28,7 +29,8 @@
                 <td style="text-align: center;">{{ $no++ }}</td>
                 <td>{{ $row->kode_tiket }}</td>
                 <td style="text-align: center;">{{ \Carbon\Carbon::parse($row->created_at)->format('d/m/Y') }}</td>
-                <td style="text-align: center;">{{ $row->nik }}</td>
+                <td style="text-align: center;">{{ $row->nik_pemohon }}</td>
+                <td>{{ $row->nama_pemohon }}</td>
                 <td>{{ $row->alamat_pemohon }}</td>
                 <td>{{ $row->layanan->nama }}</td>
                 <td style="text-align: center;">
