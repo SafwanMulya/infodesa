@@ -10,7 +10,7 @@
           <a class="nav-link active text-white fw-bold" aria-current="page" href="#datadesa">Profil Desa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="/informasi">Informasi</a>
+          <a class="nav-link text-white fw-bold" href="">Informasi</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,7 +41,6 @@
             </form>
           </li>
         @else
-          <!-- Jika Belum Login -->
           <li class="nav-item">
             <a href="{{ route('admin.dashboard') }}" class="btn btn-light btn-sm fw-bold">Login Admin</a>
           </li>

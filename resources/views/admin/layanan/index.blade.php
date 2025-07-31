@@ -46,7 +46,7 @@
                                     required>
                             </div>
 
-                       
+
 
                             <button type="submit" class="btn btn-{{ isset($layanan) ? 'primary' : 'success' }}">
                                 {{ isset($layanan) ? 'Update' : 'Simpan' }}
@@ -79,7 +79,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <strong>{{ $item->nama }}</strong><br>
-                                               
+
                                             </td>
                                             <td>
                                             {{$item->keterangan}}
