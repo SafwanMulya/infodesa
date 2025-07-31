@@ -16,7 +16,7 @@
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg bg-success shadow sticky-top">
   <div class="container">
-    <a class="navbar-brand text-white fw-bold" href="#">Navbar</a>
+    <a class="navbar-brand text-white fw-bold" href="#">AdminWeb</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
