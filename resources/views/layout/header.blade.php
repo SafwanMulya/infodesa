@@ -10,7 +10,7 @@
           <a class="nav-link active text-white fw-bold" aria-current="page" href="#datadesa">Profil Desa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="/informasi">Informasi</a>
+          <a class="nav-link text-white fw-bold" href="">Informasi</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,7 +27,25 @@
         </li>
       </ul>
 
-      <!-- Login / Logout -->
+      <!-- Login / Logout di Sebelah Kanan -->
+      <ul class="navbar-nav ms-auto">
+        @if(session()->has('admin_id'))
+          <!-- Jika Admin Sudah Login -->
+          <li class="nav-item me-2">
+            <a href="{{ url('/admin/dashboard') }}" class="btn btn-light btn-sm fw-bold">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+              @csrf
+              <button type="submit" class="btn btn-danger btn-sm fw-bold">Logout</button>
+            </form>
+          </li>
+        @else
+          <li class="nav-item">
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-light btn-sm fw-bold">Login Admin</a>
+          </li>
+        @endif
+      </ul>
     </div>
   </div>
 </nav>

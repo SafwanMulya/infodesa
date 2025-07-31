@@ -111,7 +111,7 @@
                 </div>
 
                 <div class="mt-4 d-grid">
-                    <button type="submit" class="btn btn-success shadow">Simpan Data</button>
+                    <button type="submit" class="btn btn-success shadow">Kirim</button>
                 </div>
             </div>
         </div>

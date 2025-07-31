@@ -20,6 +20,7 @@
     <h3 class="fw-bold mb-3">
         <span class="bi bi-house-gear-fill me-2"> Profil Desa</span>
     </h3>
+    <a href="{{ route('welcome.index') }}" class="btn btn-primary">Home</a>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

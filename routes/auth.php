@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardAdmin;
 use App\Http\Controllers\AgamaController;
@@ -25,5 +25,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('/permohonan', PermohonanController::class);
     Route::post('permohonan/cetak/{permohonan}', [PermohonanController::class, 'cetak_permohonan'])->name('permohonan.cetak');
     Route::post('permohonan/ttd/{permohonan}', [PermohonanController::class, 'ttd_permohonan'])->name('permohonan.ttd');
+
 
 });
