@@ -76,9 +76,9 @@ class HomeController extends Controller
                         }
                     }
                     $layanan->permohonan()->create([
-                        'nik_pemohon'=>$request->nik,
+                        'nik_pemohon'=>$request->nik_pemohon,
                         'nama_pemohon'=>$request->nama_pemohon,
-                        'alamat_pemohon'=>$request->alamat,
+                        'alamat_pemohon'=>$request->alamat_pemohon,
                         'nohp'=>$request->nohp,
                         'kode_tiket'=>str()->random(6),
                         'data_permohonan'=>$data_permohonan,
