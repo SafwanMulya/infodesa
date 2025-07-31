@@ -9,7 +9,7 @@ use App\Models\datadesa;
 use App\Models\Penduduk;
 use App\Models\Informasi;
 use App\Models\Permohonan;
-use App\Models\ProfilDesa;
+use App\Models\Profildesa;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,7 +19,7 @@ class HomeController extends Controller
         return view('welcome', [
             'penduduk' => Penduduk::all(),
             'agamas' => Agama::all(),
-            'profilDesa' => ProfilDesa::latest()->first(),
+            'profilDesa' => Profildesa::latest()->first(),
             'hilder' => Hilder::latest()->first(), //
             'datadesa'=>datadesa::all(),
             'informasi'=>informasi::all(),
