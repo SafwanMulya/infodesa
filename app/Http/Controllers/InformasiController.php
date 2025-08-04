@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Informasi;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
+
 
 class InformasiController extends Controller
 {
@@ -56,10 +58,12 @@ class InformasiController extends Controller
     /**
      * Display the specified resource.
      */
-   public function show($id, Request $request)
+  public function show($id, Request $request)
 {
-    $informasi = Informasi::findOrFail($id);
+    // Ambil informasi berdasarkan ID, termasuk komentar-komentarnya
+    $informasi = Informasi::with('komentars')->findOrFail($id);
 
+    // Query untuk filter informasi lain (jika ingin ditampilkan di sidebar atau list lain)
     $query = Informasi::query();
 
     if ($request->filled('tanggal')) {
@@ -78,7 +82,6 @@ class InformasiController extends Controller
 
     return view('informasi.detail', compact('informasi', 'semuaInformasi'));
 }
-
 
 
 

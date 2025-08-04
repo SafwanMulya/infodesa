@@ -91,6 +91,11 @@ Route::put('/admin/hilder.update/{hilder}', [HilderController::class, 'update'])
 Route::delete('/admin/hilder.destroy/{hilder}', [HilderController::class, 'destroy'])->name('admin.hilder.destroy');
 Route::put('/admin/hilder.updateInline/{id}', [HilderController::class, 'updateIndex'])->name('admin.hilder.updateInline');
 
+use App\Http\Controllers\KomentarController;
+
+Route::post('/informasi/{id}/komentar', [KomentarController::class, 'store'])->name('komentar.store');
+
+
 
 
 // Route utama resource

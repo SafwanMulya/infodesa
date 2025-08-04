@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\ProfildesaController;
+use App\Http\Controllers\KomentarController;
 Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
@@ -20,6 +21,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('/datadesa', DatadesaController::class);
     Route::resource('/agama', AgamaController::class);
     Route::resource('/hilder', HilderController::class);
+    Route::post('/informasi/{id}/komentar', [KomentarController::class, 'store'])->name('komentar.store');
+
 
 
     Route::resource('/layanan', LayananController::class);

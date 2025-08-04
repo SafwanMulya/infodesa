@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Informasi extends Model
+class Komentar extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'judul',
-        'tanggal',
-        'konten',
+        'informasi_id',
+        'nama',
+        'isi',
     ];
 
-    public function komentars()
+    public function informasi()
     {
-        return $this->hasMany(Komentar::class, 'informasi_id')->latest();
+        return $this->belongsTo(Informasi::class, 'informasi_id');
     }
 }
