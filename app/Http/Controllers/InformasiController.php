@@ -58,30 +58,26 @@ class InformasiController extends Controller
     /**
      * Display the specified resource.
      */
-  public function show($id, Request $request)
+ public function show($id, Request $request)
 {
-    // Ambil informasi berdasarkan ID, termasuk komentar-komentarnya
+    // Pastikan memanggil with('komentars')
     $informasi = Informasi::with('komentars')->findOrFail($id);
 
-    // Query untuk filter informasi lain (jika ingin ditampilkan di sidebar atau list lain)
     $query = Informasi::query();
-
     if ($request->filled('tanggal')) {
         $query->whereDate('tanggal', $request->tanggal);
     }
-
     if ($request->filled('bulan')) {
         $query->whereMonth('tanggal', $request->bulan);
     }
-
     if ($request->filled('tahun')) {
         $query->whereYear('tanggal', $request->tahun);
     }
 
     $semuaInformasi = $query->orderBy('tanggal', 'desc')->get();
-
     return view('informasi.detail', compact('informasi', 'semuaInformasi'));
 }
+
 
 
 

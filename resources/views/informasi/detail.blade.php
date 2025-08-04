@@ -55,17 +55,18 @@
             <i class="bi bi-people-fill me-2"></i> Komentar
         </div>
         <div class="card-body" id="comment-list">
-            @forelse($informasi->komentars as $komen)
-                <div class="comment-item mb-3 p-3 border rounded shadow-sm">
-                    <div class="d-flex justify-content-between">
-                        <strong class="text-primary">{{ $komen->nama }}</strong>
-                        <small class="text-muted">{{ \Carbon\Carbon::parse($komen->created_at)->diffForHumans() }}</small>
-                    </div>
-                    <p class="mt-2 mb-0">{{ $komen->isi }}</p>
-                </div>
-            @empty
-                <p class="text-muted text-center">Belum ada komentar. Jadilah yang pertama!</p>
-            @endforelse
+           @forelse(optional($informasi)->komentars ?? [] as $komen)
+    <div class="comment-item mb-3 p-3 border rounded shadow-sm">
+        <div class="d-flex justify-content-between">
+            <strong class="text-primary">{{ $komen->nama }}</strong>
+            <small class="text-muted">{{ \Carbon\Carbon::parse($komen->created_at)->diffForHumans() }}</small>
+        </div>
+        <p class="mt-2 mb-0">{{ $komen->isi }}</p>
+    </div>
+@empty
+    <p class="text-muted text-center">Belum ada komentar.</p>
+@endforelse
+
         </div>
     </div>
 </div>
